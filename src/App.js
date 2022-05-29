@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import AppBar from './components/AppBar/AppBar';
+import Users from './containers/Users';
+import Container from '@mui/material/Container';
+import { useSelector } from 'react-redux';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
+  const loading = useSelector((store) => store.loading);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading && <Spinner />}
+      <AppBar />
+      <Container maxWidth="lg" sx={{ padding: '50px 0' }}>
+        <Users />
+      </Container>
     </div>
   );
 }
