@@ -10,7 +10,7 @@ const StyledMessage = styled.div`
   height: 200px;
 `;
 
-function UsersList({ users, deleted }) {
+function UsersList({ users, deleted, message }) {
   if (users?.length) {
     const usersList = users.map((user) => (
       <Grid
@@ -44,7 +44,7 @@ function UsersList({ users, deleted }) {
     );
   }
 
-  return <StyledMessage>Click on "GET USERS" to get the list!</StyledMessage>;
+  return <StyledMessage>{message}</StyledMessage>;
 }
 
 export default UsersList;

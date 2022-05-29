@@ -42,7 +42,15 @@ function Users() {
   }
   const loadmore = store.users &&
     store.users.length !== 0 &&
-    store.page !== store.totalPages && <LoadMore clicked={fetchMoreUsers} />;
+    store.page !== store.totalPages &&
+    inputValue.trim() === '' && <LoadMore clicked={fetchMoreUsers} />;
+
+  const message =
+    !store.users || store.users.length === 0
+      ? 'Click on "GET USERS" to get the list!'
+      : userList?.length === 0 && inputValue.trim() !== ''
+      ? 'User not found'
+      : '';
 
   return (
     <div>
@@ -52,7 +60,7 @@ function Users() {
         disabled={store.users?.length}
         clicked={fetchUsers}
       />
-      <UsersList deleted={deleteUser} users={userList} />
+      <UsersList message={message} deleted={deleteUser} users={userList} />
       {loadmore}
     </div>
   );
